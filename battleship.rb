@@ -1,2 +1,4 @@
-class Battleship
-end
+require './lib/game'
+
+game = Game.new
+game.run
