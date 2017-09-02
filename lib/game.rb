@@ -5,26 +5,33 @@ require './lib/messages'
 class Game
   include Messages
 
+  def initialize
+    @players = []
+  end
+
   def run
     puts welcome_message
     cmd = get_user_input
-    start_game
+    player_options(cmd)
   end
 
-  def start_game
+  def player_options(cmd)
     case cmd
-      when "p" then begin_game
-      when "i" then display_instructions
-      when "q" then quit_game
-      else warn_invalid_response(cmd)
-      end
+    when "p" then begin_game
+    when "i" then "here are instructions!"
+    when "q" then "bye bye!"
     end
+  end
 
-  def start_game
+  def begin_game
     clear_screen
-    # Ask how hard in the future (Beginner: size = 4 ships = 2)
     make_players
     make_boards(board_options)
     play_game
+  end
+
+  def make_players
+    @players << Rick.new("Rick")
+    @players << Replicant.new("Replicant")
   end
 end
