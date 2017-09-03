@@ -48,6 +48,16 @@ class Board
     end
   end
 
-  
+  def two_ship_linked?(space1, space2)
+    gameboard = make_array_of_all_spaces
+    if gameboard.index(space2) - gameboard.index(space1) != 1
+      return false
+    else
+      return true
+    end
+  end
+  # def two_ship_vertical_valid?(space1, space2)
+  #   board =
+  # end
 
 end
