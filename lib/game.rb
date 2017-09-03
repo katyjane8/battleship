@@ -1,37 +1,48 @@
 require 'pry'
 require 'colorize'
 require './lib/messages'
+require './lib/replicant'
+require './lib/rick'
+require './lib/board'
 
 class Game
   include Messages
 
   def initialize
-    @players = []
+    @player1 = []
+    @player2 = []
   end
 
   def run
+    clear_screen
     puts welcome_message
     cmd = get_user_input
     player_options(cmd)
   end
 
-  def player_options(cmd)
+  def player_options(cmd = '')
     case cmd
+      #page 96 about case in POODER
     when "p" then begin_game
-    when "i" then "here are instructions!"
-    when "q" then "bye bye!"
+    when "i" then puts "here are instructions!"
+    when "q" then puts "bye bye!"
+    # else warn_invalid_response(cmd)
     end
   end
 
   def begin_game
     clear_screen
     make_players
-    make_boards(board_options)
-    play_game
+    # make_boards
+    # play_game
   end
 
-  def make_players
-    @players << Rick.new("Rick")
-    @players << Replicant.new("Replicant")
+  def make_player1
+    @player1 << Rick.new("Rick")
   end
+
+  def make_player2
+    @player2 << Replicant.new("Replicant")
+  end
+  
 end
