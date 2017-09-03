@@ -1,34 +1,53 @@
-require './lib/square'
+require './lib/twoship'
+require './lib/threeship'
+require 'pry'
 
 class Board
 
-  attr_reader :size
+  attr_accessor :board_spaces,
+                :empty,
+                :two_ship,
+                :three_ship
 
   def initialize
-    @size = size
+    @board_spaces = {"A1"=>"Open", "A2"=>"Open", "A3"=>"Open", "A4"=>"Open",
+      "B1"=>"Open", "B2"=>"Open", "B3"=>"Open", "B4"=>"Open",
+      "C1"=>"Open", "C2"=>"Open", "C3"=>"Open", "C4"=>"Open",
+      "D1"=>"Open", "D2"=>"Open", "D3"=>"Open","D4"=>"Open"}
+      @empty = []
+      @two_ship = []
+      @three_ship = []
   end
 
-  def build_board
-    grid = initialize_empty_gameboard
-    blank_gameboard = grid.map do |letter_array|
-      row = {}
-      letter_array.each do |square_name|
-        row[square_name] = Square.new(square_name)
-      end
-      row
-  end
-  blank_gameboard
+  def create_two_ship(space1, space2)
+    if valid_two_ship?(space1,space2) == true
+      place_two_ship(space1, space2)
+      two_ship = TwoShip.new(space1, space2)
+    else
+      puts "Space not valid, try again."
+    end
   end
 
-  def initialize_empty_gameboard
-    alpha_row_names = ("a".."z").to_a
-    rows = alpha_row_names.slice(0..(size - 1))
-    empty_spaces = rows.map do |row|
-      row = (1..size).map do |num|
-        "#{row}#{num}"
-      end
+  def place_two_ship(space1, space2)
+    @board_spaces[space1] = "Not Available"
+    @board_spaces[space2] = "Not Available"
+    @two_ship << space1
+    @two_ship << space2
   end
-  empty_spaces
-end
+
+  def available_two_ship_space?(space1, space2)
+    linked = two_ship_linked?(space1, space2)
+    off_board = two_ship_placed_off_board?(space1, space2)
+    vertical = two_ship_vertical_valid?(space1, space2)
+    if linked == true && off_board == false
+      return true
+    elsif vertical == true
+      return true
+    else
+      return false
+    end
+  end
+
+  
 
 end
