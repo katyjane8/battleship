@@ -1,8 +1,8 @@
 require 'pry'
 require 'colorize'
 require './lib/messages'
-require './lib/replicant'
-require './lib/rick'
+require './lib/Replicant'
+require './lib/Rick'
 require './lib/board'
 
 class Game
@@ -44,5 +44,5 @@ class Game
   def make_player2
     @player2 << Replicant.new("Replicant")
   end
-  
+
 end
