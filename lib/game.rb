@@ -4,6 +4,8 @@ require './lib/messages'
 require './lib/Replicant'
 require './lib/Rick'
 require './lib/board'
+require './lib/twoship'
+require './lib/threeship'
 
 class Game
   include Messages

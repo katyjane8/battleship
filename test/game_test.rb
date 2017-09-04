@@ -17,10 +17,4 @@ class GameTest < MiniTest::Test
     assert_equal "Welcome to BATTLESHIP\n\nWould you like to (p)lay, read the (i)nstructions, or (q)uit?.\n", game.welcome_message
   end
 
-  def test_game_can_get_user_input
-    game = Game.new
-
-    assert_equal '', game.get_user_input
-  end
-
 end
