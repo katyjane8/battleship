@@ -13,5 +13,4 @@ class GameTest < MiniTest::Test
   end
 
 
-
 end

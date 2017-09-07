@@ -1,50 +1,40 @@
-require 'pry'
-
 class Board
 
+  def board
+    ["A1","A2","A3","A4",
+     "B1","B2","B3","B4",
+     "C1","C2","C3","C4",
+     "D1","D2","D3","D4"]
+  end
 
-  
-  # BOARD_X_SIZE = 4
-  # BORAD_Y_SIZE = 4
-  #
-  # attr_accessor :board_spaces,
-  #               :empty,
-  #
-  # def board = Array.new(BOARD_X_SIZE) { Array.new(4) }
-  # end
-  #
-  # def guesses = Array.new(4) { Array.new(4) }
-  # end
-  #
-  # def display_guesses
-  # end
-  #
-  # def make_array_of_all_spaces
-  #   board_array = []
-  #   @boardhash.key.each do |space|
-  #     board_array << space
-  #   end
-  #   board_array
-  # end
-  #
-  # def make_array_of_empty_spaces
-  #   @empty = []
-  #   @boardhash.key.each do |space|
-  #     if board_spaces[space] == "Open"
-  #       @empty << space
-  #     end
-  #   end
-  #   @empty
-  # end
-  #
-  # def make_array_of_occupied_spaces
-  #   not_available = []
-  #   @boardhash.key.each do |space|
-  #     if board_spaces[space] == "Not Available"
-  #       not_available << space
-  #     end
-  #   end
-  #   not_available
-  # end
+  def second_coord
+    {"A1"=>["A2","B1"], "A2"=>["A1","A3","B2"], "A3"=>["A2","A4","B3"],
+     "A4"=>["B4","A3"], "B1"=>["B2","A1","C1"], "B2"=>["B1","B3","A2","C2"],
+     "B3"=>["A3","B2","B4","C3"], "B4"=>["A4","B3","C4"], "C1"=>["B1","C2","D1"],
+     "C2"=>["C1","C3","B2","D2"], "C3"=>["B3","C2","C4","D3"],
+     "C4"=>["B4","C3","D4"], "D1"=>["C1","D2"], "D2"=>["D1","D3","C2"],
+     "D3"=>["C3","D2","D4"], "D4"=>["C4","D3"]
+    }
+  end
+
+  def third_coord
+    { ["A1","A2"]=>["A3"], ["A1","B1"]=>["C1"], ["A2","A1"]=>["A3"],
+      ["A2","A3"]=>["A4"], ["A2","B2"]=>["C2"], ["A3","A2"]=>["A4"],
+      ["A3","A4"]=>["A2"], ["A3","B3"]=>["C3"], ["A4","A3"]=>["A2"],
+      ["A4","B4"]=>["C4"], ["B1","B2"]=>["B3"], ["B1","A1"]=>["C1"],
+      ["B1","C1"]=>["A1"], ["B2","B1"]=>["B3"], ["B2","B3"]=>["B1","B4"],
+      ["B2","A2"]=>["C2"], ["B2","C2"]=>["A2","D2"], ["B3","A3"]=>["C3"],
+      ["B3","B2"]=>["B1","B4"], ["B3","B4"]=>["B2"], ["B3","C3"]=>["A3","D3"],
+      ["B4","A4"]=>["C4"], ["B4","B3"]=>["B2"], ["B4","C4"]=>["A4","D4"],
+      ["C1","B1"]=>["A1","D1"], ["C1","C2"]=>["C3"], ["C1","D1"]=>["B1"],
+      ["C2","C1"]=>["C3"], ["C2","C3"]=>["C1","C4"], ["C2","B2"]=>["A2","D2"],
+      ["C2","D2"]=>["B2"], ["C3","B3"]=>["A3","D3"], ["C3","C2"]=>["C1","C4"],
+      ["C3","C4"]=>["C2"], ["C3","D3"]=>["B3"], ["C4","B4"]=>["A4","D4"],
+      ["C4","C3"]=>["C2"], ["C4","D4"]=>["B4"], ["D1","C1"]=>["B1"],
+      ["D1","D2"]=>["D3"], ["D2","D1"]=>["D3"], ["D2","C2"]=>["B2"],
+      ["D2","D3"]=>["D1","D4"], ["D3","C3"]=>["B3"], ["D3","D2"]=>["D1","D4"],
+      ["D3","D4"]=>["D2"], ["D4","C4"]=>["B4"], ["D4","D3"]=>["D2"]
+    }
+  end
 
 end
